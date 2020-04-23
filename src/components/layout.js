@@ -57,7 +57,7 @@ export default ({ children, location }) => (
               marginBottom: `${rhythm(1.5)}`,
             }}
           >
-            <h1
+        {/* <h1
               style={{
                 ...scale(1.3),
                 position: 'absolute',
@@ -79,7 +79,7 @@ export default ({ children, location }) => (
               >
                 {siteTitle}
               </Link>
-            </h1>
+            </h1> */}
           </BackgroundImage>
         )
       } else {
