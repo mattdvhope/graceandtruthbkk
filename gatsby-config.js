@@ -14,10 +14,10 @@ module.exports = {
     {
       resolve: 'gatsby-source-cosmicjs',
       options: {
-        bucketSlug: process.env.COSMIC_BUCKET,
+        bucketSlug: `graceandtruthbkk`, // process.env.COSMIC_BUCKET,
         objectTypes: ['posts','settings'],
         apiAccess: {
-          read_key: process.env.COSMIC_READ_KEY,
+          read_key: `cNIHbtQZYj2nDufJsJyr99n2VjXPxtM2x7srRaTr3NuYHw5fx2`, // process.env.COSMIC_READ_KEY,
         },
         localMedia: true
       }
