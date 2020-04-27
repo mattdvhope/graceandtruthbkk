@@ -43,7 +43,7 @@ class BlogIndex extends React.Component {
   }
 
   lineLink(slug) {
-    return `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654045933&redirect_uri=${process.env.GATSBY_API_URL}${slug}&state=${this.makeState(10)}&scope=profile%20openid&max_age=360000&ui_locales=th&bot_prompt=aggressive`
+    return `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654145148&redirect_uri=${process.env.GATSBY_API_URL}${slug}&state=${this.makeState(10)}&scope=profile%20openid&max_age=360000&ui_locales=th&bot_prompt=aggressive`
   }
 
   loggedInLink(title, slug) {

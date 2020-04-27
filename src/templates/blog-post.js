@@ -24,11 +24,11 @@ class BlogPostTemplate extends React.Component {
     // const url_with_code = window.location.search.match(/(?<=code=)(.*)(?=&state)/)
     const url_with_code = window.location.search.match(/(code=)(.*)(?=&state)/)
     const code = url_with_code ? url_with_code[2] : null
-    
+
     if (!isLoggedIn() && code) {
       // 1. getting id_token
       const slug = window.localStorage.getItem("Node Slug");
-      const params = `grant_type=authorization_code&code=${code}&redirect_uri=${process.env.GATSBY_API_URL}${slug}&client_id=1654045933&client_secret=fada8f346cb8e9092ad92d7ff4b10675`;
+      const params = `grant_type=authorization_code&code=${code}&redirect_uri=${process.env.GATSBY_API_URL}${slug}&client_id=1654145148&client_secret=0c9e185b0a932ace22d6d6df08eaa644`;
       const response = await fetch(`https://api.line.me/oauth2/v2.1/token`, {
         method: 'POST',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -40,7 +40,7 @@ class BlogPostTemplate extends React.Component {
       const personal_data = await fetch(`https://api.line.me/oauth2/v2.1/verify`, {
         method: 'POST',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
-        body: `id_token=${json.id_token}&client_id=1654045933`
+        body: `id_token=${json.id_token}&client_id=1654145148`
       });
       const person = await personal_data.json()
       handleLogin(person)
