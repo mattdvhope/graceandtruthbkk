@@ -5,6 +5,8 @@ export default ({ title }) => (
 	
 	<Helmet title={title}>
 
+    {/* Facebook Pixel Code */}
+
   	<script
 		  dangerouslySetInnerHTML={{ __html: `
 		    !function(f,b,e,v,n,t,s)
@@ -28,6 +30,8 @@ export default ({ title }) => (
 				src="https://www.facebook.com/tr?id=239387003980312&ev=PageView&noscript=1"
 			/>
     `}</noscript>
+
+    {/* End Facebook Pixel Code */}
 
   </Helmet>
 

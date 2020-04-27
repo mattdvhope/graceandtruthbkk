@@ -40,9 +40,6 @@ export default ({ children, location }) => (
       const homgePageHero =
         data.cosmicjsSettings.metadata.homepage_hero.local.childImageSharp.fluid
       let header
-
-console.log("site_title: ", data.cosmicjsSettings.metadata.site_title)
-
       let rootPath = `/`
       let postsPath = `/posts`
       if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
