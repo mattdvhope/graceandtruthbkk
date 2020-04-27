@@ -1,4 +1,5 @@
 import React from 'react'
+import HelmetLocale from './HelmetLocale'
 import { Link, navigate } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
 
@@ -8,7 +9,6 @@ import LayoutHeaderOne from './LayoutHeaderOne'
 import LayoutHeaderTwo from './LayoutHeaderTwo'
 import Footer from "./Footer"
 import Logout from "./Logout"
-import FacebookPixel from "./FacebookPixel"
 
 // Import typefaces
 import 'typeface-montserrat'
@@ -20,6 +20,7 @@ export default ({ children, location }) => (
       query LayoutQuery {
         cosmicjsSettings(slug: { eq: "general" }) {
           metadata {
+            site_title
             site_heading
             homepage_hero {
               local {
@@ -40,6 +41,8 @@ export default ({ children, location }) => (
         data.cosmicjsSettings.metadata.homepage_hero.local.childImageSharp.fluid
       let header
 
+console.log("site_title: ", data.cosmicjsSettings.metadata.site_title)
+
       let rootPath = `/`
       let postsPath = `/posts`
       if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
@@ -55,6 +58,7 @@ export default ({ children, location }) => (
 
       return (
         <div>
+          <HelmetLocale title={`${siteTitle}`} />
           {header}
           <div
             style={{
@@ -70,7 +74,6 @@ export default ({ children, location }) => (
           <Footer />
           <Logout />
           <link href="https://fonts.googleapis.com/css?family=Athiti|Chonburi|Kanit|Maitree|Prompt|Sriracha|Taviraj|Trirong|Josefin+Sans" rel="stylesheet" />
-          <FacebookPixel />
         </div>
       )
     }}

@@ -1,11 +1,11 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import { Link, navigate } from 'gatsby'
 import get from 'lodash/get'
 import { graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 import { handleLogin, isLoggedIn, getUser } from "../utils/auth"
 
+import HelmetLocale from '../components/HelmetLocale'
 import Bio from '../components/Bio'
 import Layout from '../components/layout'
 import { rhythm, scale } from '../utils/typography'
@@ -24,7 +24,7 @@ class BlogPostTemplate extends React.Component {
     // const url_with_code = window.location.search.match(/(?<=code=)(.*)(?=&state)/)
     const url_with_code = window.location.search.match(/(code=)(.*)(?=&state)/)
     const code = url_with_code ? url_with_code[2] : null
-
+    
     if (!isLoggedIn() && code) {
       // 1. getting id_token
       const slug = window.localStorage.getItem("Node Slug");
@@ -102,7 +102,7 @@ class BlogPostTemplate extends React.Component {
           }
         `}
         </style>
-        <Helmet title={`${post.title} | ${siteTitle}`} />
+        <HelmetLocale title={`${post.title} | ${siteTitle}`} />
         <div
           style={{
             marginTop: rhythm(1.4),
