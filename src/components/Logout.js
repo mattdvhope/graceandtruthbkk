@@ -2,7 +2,7 @@ import React from "react"
 import { Link, navigate } from "gatsby"
 import { logout } from "../utils/auth"
 
-export default () => {
+const Logout = () => (
 
 	<h2>
 		<a
@@ -16,4 +16,6 @@ export default () => {
 	  </a>
 	</h2>
 
-}
+)
+
+export default Logout
