@@ -8,6 +8,7 @@ import LayoutHeaderOne from './LayoutHeaderOne'
 import LayoutHeaderTwo from './LayoutHeaderTwo'
 import Footer from "./Footer"
 import Logout from "./Logout"
+import FacebookPixel from "./FacebookPixel"
 
 // Import typefaces
 import 'typeface-montserrat'
@@ -69,6 +70,7 @@ export default ({ children, location }) => (
           <Footer />
           <Logout />
           <link href="https://fonts.googleapis.com/css?family=Athiti|Chonburi|Kanit|Maitree|Prompt|Sriracha|Taviraj|Trirong|Josefin+Sans" rel="stylesheet" />
+          <FacebookPixel />
         </div>
       )
     }}
