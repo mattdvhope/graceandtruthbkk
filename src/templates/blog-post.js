@@ -89,13 +89,13 @@ class BlogPostTemplate extends React.Component {
     if (this.state.window) {
       const inner = this.state.window.innerWidth;
       if (inner <= 359) {
-        return 5.6;
+        return 5.5;
       } else if (inner > 359 && inner <= 374) {
-        return 6.2;
+        return 6.1;
       } else if (inner > 374 && inner <= 400) {
-        return 6.7;
+        return 6.4;
       } else if (inner > 400 && inner <= 500) {
-        return 7.7;
+        return 7.4;
       } else if (inner > 500 && inner <= 535) {
         return 9;
       } else if (inner > 535 && inner <= 560) {
