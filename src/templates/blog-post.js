@@ -95,7 +95,7 @@ class BlogPostTemplate extends React.Component {
       } else if (inner > 374 && inner <= 400) {
         return 6.7;
       } else if (inner > 400 && inner <= 500) {
-        return 7.4;
+        return 7.7;
       } else if (inner > 500 && inner <= 535) {
         return 9;
       } else if (inner > 535 && inner <= 560) {

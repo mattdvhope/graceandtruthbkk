@@ -5,7 +5,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import { isLoggedIn } from "../utils/auth"
 import { rhythm, scale } from '../utils/typography'
 
-import LayoutHeaderOne from './LayoutHeaderOne'
+import LayoutHeader from './LayoutHeader'
 import Logout from "./Logout"
 import Footer from "./Footer"
 
@@ -50,10 +50,11 @@ export default ({ children, location }) => (
         rootPath = __PATH_PREFIX__ + `/`
         postsPath = __PATH_PREFIX__ + `/posts`
       }
+      const headerTag = (<LayoutHeader homePageHero={homePageHero} />)
       if (location.pathname === rootPath || location.pathname === postsPath) {
-        header = (<Link to="/"><LayoutHeaderOne homePageHero={homePageHero} height={10} /></Link>)
+        header = headerTag
       } else {
-        header = (<Link to="/"><LayoutHeaderOne homePageHero={homePageHero} height={4.2} /></Link>)
+        header = (<Link to="/">{headerTag}</Link>)
       }
       const author = data.cosmicjsSettings.metadata
       const logout = isLoggedIn() ? (<Logout />) : (<span/>)
