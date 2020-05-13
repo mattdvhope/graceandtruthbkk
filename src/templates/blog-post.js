@@ -86,7 +86,7 @@ class BlogPostTemplate extends React.Component {
   }
 
   heightOfVideo(window_here) {
-    if (window) {
+    if (this.state.window) {
       const inner = window_here.innerWidth;
       if (inner <= 359) {
         return 5.6;
