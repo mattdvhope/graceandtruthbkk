@@ -2,12 +2,12 @@ import React from 'react'
 import { Link, navigate } from 'gatsby'
 import get from 'lodash/get'
 import { graphql } from 'gatsby'
-import BackgroundImage from 'gatsby-background-image'
 import { handleLogin, isLoggedIn, getUser } from "../utils/auth"
 
 import HelmetLocale from '../components/HelmetLocale'
-import Bio from '../components/Bio'
 import Layout from '../components/layout'
+import BlogContent from './blog_content'
+
 import { rhythm, scale } from '../utils/typography'
 
 class BlogPostTemplate extends React.Component {
@@ -71,103 +71,78 @@ class BlogPostTemplate extends React.Component {
     }
   } // async componentDidMount()
 
+  youtubeEmbeddable(youtubeUrl) {
+    const video_id = this.youtubeId(youtubeUrl);
+    return `https://www.youtube.com/embed/${video_id}`
+  }
+
+  youtubeId(youtubeUrl) {
+    let video_id = youtubeUrl.split('v=')[1];
+    const ampersandPosition = video_id.indexOf('&');
+    if(ampersandPosition != -1) {
+      video_id = video_id.substring(0, ampersandPosition);
+    }
+    return video_id    
+  }
+
+  heightOfVideo() {
+    const inner = window.innerWidth;
+    if (inner <= 359) {
+      return 5.6;
+    } else if (inner > 359 && inner <= 374) {
+      return 6.2;
+    } else if (inner > 374 && inner <= 400) {
+      return 6.7;
+    } else if (inner > 400 && inner <= 500) {
+      return 7.4;
+    } else if (inner > 500 && inner <= 535) {
+      return 9;
+    } else if (inner > 535 && inner <= 560) {
+      return 10;
+    } else if (inner > 560 && inner <= 600) {
+      return 10.5;
+    } else if (inner > 600 && inner <= 650) {
+      return 11;
+    } else if (inner > 650 && inner <= 740) {
+      return 12;
+    } else if (inner > 740 && inner <= 800) {
+      return 13;
+    } else if (inner > 800 && inner <= 920) {
+      return 13.5;
+    } else if (inner > 920) {
+      return 14;
+    }
+  }
+
   render() {
     const post = this.props.data.cosmicjsPosts
+    const youtubeCosmic = post.metadata.youtube_url
+    const youtubeUrl = this.youtubeEmbeddable(youtubeCosmic)
     const siteTitle = get(
       this.props,
       'data.cosmicjsSettings.metadata.site_title'
     )
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
+
     const location = get(this, 'props.location')
     const { previous, next } = this.props.pageContext
 
+    // console.log(this.heightOfVideo())
+
     const blog_post_page = (
       <Layout location={location}>
-        <style>
-          {`
-          .post-content {
-            text-align: justify;
-          }
-          .post-hero {
-            width: calc(100% + ${rhythm(8)});
-            margin-left: ${rhythm(-4)};
-            height: ${rhythm(18)};
-          }
-          @media (max-width: ${rhythm(32)}) {
-            .post-hero {
-              width: calc(100% + ${rhythm((3 / 4) * 2)});
-              margin-left: ${rhythm(-3 / 4)};
-              height: ${rhythm(13)};
-            }
-          }
-        `}
-        </style>
-        <HelmetLocale title={`${post.title} | ${siteTitle}`} />
-        <div
-          style={{
-            marginTop: rhythm(1.4),
-          }}
-        >
-          <Link to="/">← Back to Posts</Link>
-        </div>
-        <h1
-          style={{
-            marginTop: rhythm(1),
-          }}
-        >
-          {post.title}
-        </h1>
-        <BackgroundImage
-          Tag="div"
-          className="post-hero"
-          fluid={post.metadata.hero.local.childImageSharp.fluid}
-          backgroundColor={`#007ACC`}
-          style={{
-            marginBottom: rhythm(0.6),
-            height: rhythm(8),
-          }}
+        <BlogContent
+          post={post}
+          youtubeUrl={youtubeUrl}
+          height={this.heightOfVideo()}
+          width={(this.heightOfVideo() * 16) / 9}
+          author={author}
+          siteTitle={siteTitle}
+          previous={previous}
+          next={next}
         />
-        <div
-          className="post-content"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        <Bio settings={author} />
-
-        <ul
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            listStyle: 'none',
-            padding: 0,
-          }}
-        >
-          {previous && (
-            <li>
-              <Link to={`posts/${previous.slug}`} rel="prev">
-                ← {previous.title}
-              </Link>
-            </li>
-          )}
-
-          {next && (
-            <li>
-              <Link to={`posts/${next.slug}`} rel="next">
-                {next.title} →
-              </Link>
-            </li>
-          )}
-        </ul>
       </Layout>
     ) // blog_post_page
-
-// console.log("In RENDER!!!");
-// console.log("isLoggedIn()...", isLoggedIn());
 
     if (!this.state.window) {
       console.log("not yet rendering blog page!!!!");
@@ -197,15 +172,7 @@ export const pageQuery = graphql`
       title
       created(formatString: "MMMM DD, YYYY")
       metadata {
-        hero {
-          local {
-            childImageSharp {
-              fluid(quality: 90, maxWidth: 1920) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
+        youtube_url
       }
     }
     cosmicjsSettings(slug: { eq: "general" }) {

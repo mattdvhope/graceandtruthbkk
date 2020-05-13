@@ -4,7 +4,6 @@ import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 
-import Bio from '../components/Bio'
 import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
 import { isLoggedIn } from "../utils/auth"
@@ -56,12 +55,10 @@ class BlogIndex extends React.Component {
 
   render() {
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
-    const author = get(this, 'props.data.cosmicjsSettings.metadata')
     const location = get(this, 'props.location')
 
     return (
       <Layout location={location}>
-        <Bio settings={author} />
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           return (
@@ -73,10 +70,7 @@ class BlogIndex extends React.Component {
               >
                 {this.Linkage(title, node.slug)}
               </h3>
-              <small>{node.created}</small>
-              <p
-                dangerouslySetInnerHTML={{ __html: node.metadata.description }}
-              />
+              <p dangerouslySetInnerHTML={{ __html: node.metadata.description }}/>
             </div>
           )
         })}
@@ -98,15 +92,6 @@ export const pageQuery = graphql`
           slug
           title
           created(formatString: "DD MMMM, YYYY")
-        }
-      }
-    }
-    cosmicjsSettings(slug: { eq: "general" }) {
-      metadata {
-        author_name
-        author_bio
-        author_avatar {
-          imgix_url
         }
       }
     }

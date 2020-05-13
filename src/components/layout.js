@@ -2,13 +2,12 @@ import React from 'react'
 import HelmetLocale from './HelmetLocale'
 import { Link, navigate } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
-
+import { isLoggedIn } from "../utils/auth"
 import { rhythm, scale } from '../utils/typography'
 
 import LayoutHeaderOne from './LayoutHeaderOne'
-import LayoutHeaderTwo from './LayoutHeaderTwo'
-import Footer from "./Footer"
 import Logout from "./Logout"
+import Footer from "./Footer"
 
 // Import typefaces
 import 'typeface-montserrat'
@@ -31,28 +30,33 @@ export default ({ children, location }) => (
                 }
               }
             }
+            author_name
+            author_bio
+            author_avatar {
+              imgix_url
+            }
           }
         }
       }
     `}
     render={data => {
       const siteTitle = data.cosmicjsSettings.metadata.site_heading
-      const homgePageHero =
+      const homePageHero =
         data.cosmicjsSettings.metadata.homepage_hero.local.childImageSharp.fluid
-      let header
+      let header;
       let rootPath = `/`
       let postsPath = `/posts`
       if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
         rootPath = __PATH_PREFIX__ + `/`
         postsPath = __PATH_PREFIX__ + `/posts`
       }
-
       if (location.pathname === rootPath || location.pathname === postsPath) {
-        header = (<LayoutHeaderOne homgePageHero={homgePageHero} />)
+        header = (<Link to="/"><LayoutHeaderOne homePageHero={homePageHero} height={10} /></Link>)
       } else {
-        header = (<LayoutHeaderTwo siteTitle={siteTitle} />)
+        header = (<Link to="/"><LayoutHeaderOne homePageHero={homePageHero} height={4.2} /></Link>)
       }
-
+      const author = data.cosmicjsSettings.metadata
+      const logout = isLoggedIn() ? (<Logout />) : (<span/>)
       return (
         <div>
           <HelmetLocale title={`${siteTitle}`} />
@@ -67,9 +71,9 @@ export default ({ children, location }) => (
             }}
           >
             {children}
+            {logout}
+            <Footer author={author} />
           </div>
-          <Footer />
-          <Logout />
           <link href="https://fonts.googleapis.com/css?family=Athiti|Chonburi|Kanit|Maitree|Prompt|Sriracha|Taviraj|Trirong|Josefin+Sans" rel="stylesheet" />
         </div>
       )

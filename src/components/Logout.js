@@ -4,7 +4,7 @@ import { logout } from "../utils/auth"
 
 const Logout = () => (
 
-	<h2>
+	<h3 style={{ textAlign: 'center', marginTop: `15px` }}>
 		<a
 	    href="/"
 	    onClick={event => {
@@ -12,9 +12,9 @@ const Logout = () => (
 	      logout(() => navigate(`/`))
 	    }}
 	  >
-	    Logout
+	    ออกจากระบบ
 	  </a>
-	</h2>
+	</h3>
 
 )
 

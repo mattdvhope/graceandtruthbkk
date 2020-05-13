@@ -5,7 +5,7 @@ export default ({ settings }) => (
   <div
     style={{
       display: 'flex',
-      marginBottom: rhythm(2.5),
+      marginTop: rhythm(2),
     }}
   >
     <img
@@ -16,8 +16,9 @@ export default ({ settings }) => (
         marginBottom: 0,
         width: rhythm(2),
         height: rhythm(2),
+        borderRadius: `50%`,
       }}
     />
-    <div dangerouslySetInnerHTML={{ __html: settings.author_bio }} />
+    <div style={{ fontSize: `140%` }} dangerouslySetInnerHTML={{ __html: settings.author_bio }} />
   </div>
 )
