@@ -85,9 +85,9 @@ class BlogPostTemplate extends React.Component {
     return video_id    
   }
 
-  heightOfVideo(window_here) {
+  heightOfVideo() {
     if (this.state.window) {
-      const inner = window_here.innerWidth;
+      const inner = this.state.window.innerWidth;
       if (inner <= 359) {
         return 5.6;
       } else if (inner > 359 && inner <= 374) {
@@ -136,8 +136,8 @@ class BlogPostTemplate extends React.Component {
         <BlogContent
           post={post}
           youtubeUrl={youtubeUrl}
-          height={this.heightOfVideo(this.state.window)}
-          width={(this.heightOfVideo(this.state.window) * 16) / 9}
+          height={this.heightOfVideo()}
+          width={(this.heightOfVideo() * 16) / 9}
           author={author}
           siteTitle={siteTitle}
           previous={previous}
