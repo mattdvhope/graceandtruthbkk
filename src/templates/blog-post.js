@@ -86,31 +86,33 @@ class BlogPostTemplate extends React.Component {
   }
 
   heightOfVideo(window_here) {
-    const inner = window_here.innerWidth;
-    if (inner <= 359) {
-      return 5.6;
-    } else if (inner > 359 && inner <= 374) {
-      return 6.2;
-    } else if (inner > 374 && inner <= 400) {
-      return 6.7;
-    } else if (inner > 400 && inner <= 500) {
-      return 7.4;
-    } else if (inner > 500 && inner <= 535) {
-      return 9;
-    } else if (inner > 535 && inner <= 560) {
-      return 10;
-    } else if (inner > 560 && inner <= 600) {
-      return 10.5;
-    } else if (inner > 600 && inner <= 650) {
-      return 11;
-    } else if (inner > 650 && inner <= 740) {
-      return 12;
-    } else if (inner > 740 && inner <= 800) {
-      return 13;
-    } else if (inner > 800 && inner <= 920) {
-      return 13.5;
-    } else if (inner > 920) {
-      return 14;
+    if (window) {
+      const inner = window_here.innerWidth;
+      if (inner <= 359) {
+        return 5.6;
+      } else if (inner > 359 && inner <= 374) {
+        return 6.2;
+      } else if (inner > 374 && inner <= 400) {
+        return 6.7;
+      } else if (inner > 400 && inner <= 500) {
+        return 7.4;
+      } else if (inner > 500 && inner <= 535) {
+        return 9;
+      } else if (inner > 535 && inner <= 560) {
+        return 10;
+      } else if (inner > 560 && inner <= 600) {
+        return 10.5;
+      } else if (inner > 600 && inner <= 650) {
+        return 11;
+      } else if (inner > 650 && inner <= 740) {
+        return 12;
+      } else if (inner > 740 && inner <= 800) {
+        return 13;
+      } else if (inner > 800 && inner <= 920) {
+        return 13.5;
+      } else if (inner > 920) {
+        return 14;
+      }
     }
   }
 
