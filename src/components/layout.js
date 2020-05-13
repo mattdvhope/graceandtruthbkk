@@ -72,8 +72,8 @@ export default ({ children, location }) => (
             }}
           >
             {children}
-            {logout}
             <Footer author={author} />
+            {logout}
           </div>
           <link href="https://fonts.googleapis.com/css?family=Athiti|Chonburi|Kanit|Maitree|Prompt|Sriracha|Taviraj|Trirong|Josefin+Sans" rel="stylesheet" />
         </div>
