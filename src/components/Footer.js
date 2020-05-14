@@ -13,33 +13,20 @@ export default () => (
         cosmicjsSettings(slug: { eq: "general" }) {
           metadata {
             site_title
-            site_heading
-            homepage_hero {
-              local {
-                childImageSharp {
-                  fluid(quality: 90, maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
-              }
+            infor_name_1
+            infor_1
+            infor_avatar_1 {
+              imgix_url
             }
           }
         }
       }
     `}
     render={data => {
-      const siteTitle = data.cosmicjsSettings.metadata.site_heading
-      const homePageHero =
-        data.cosmicjsSettings.metadata.homepage_hero.local.childImageSharp.fluid
-
+      const settings = data.cosmicjsSettings.metadata
       return (
-        <footer
-          style={{
-            textAlign: 'center',
-            padding: `0 3px 20px 0`,
-          }}
-        >
-          <FB/>
+        <footer>
+          <FB settings={settings}/>
         </footer>
       )
     }}

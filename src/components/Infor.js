@@ -1,7 +1,7 @@
 import React from 'react'
 import { rhythm } from '../utils/typography'
 
-export default ({ srcImg, altName, setHTML, top, bottom, imgTop }) => (
+export default ({ top, bottom, srcImg, altName, imgTop, setHTML }) => (
   <div
     style={{
       display: 'flex',
@@ -22,7 +22,6 @@ export default ({ srcImg, altName, setHTML, top, bottom, imgTop }) => (
     />
     <div
       dangerouslySetInnerHTML={{ __html: setHTML }}
-      style={{ fontSize: `130%` }}
     />
   </div>
 )
