@@ -34,7 +34,7 @@ class BlogIndex extends React.Component {
       <a
         href={this.lineLink(slug)}
         onClick={e => this.handleClick(e, slug)}
-        style={{ boxShadow: `none` }}
+        style={{ boxShadow: `none`, fontFamily: `Kanit` }}
       >
         {title}
       </a>
@@ -47,7 +47,7 @@ class BlogIndex extends React.Component {
 
   loggedInLink(title, slug) {
     return (
-      <Link style={{ boxShadow: 'none' }} to={`posts/${slug}`}>
+      <Link style={{ boxShadow: `none`, fontFamily: `Kanit` }} to={`posts/${slug}`}>
         {title}
       </Link>
     )
