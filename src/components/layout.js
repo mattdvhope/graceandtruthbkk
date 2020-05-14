@@ -30,11 +30,6 @@ export default ({ children, location }) => (
                 }
               }
             }
-            author_name
-            author_bio
-            author_avatar {
-              imgix_url
-            }
           }
         }
       }
@@ -56,7 +51,6 @@ export default ({ children, location }) => (
       } else {
         header = (<Link to="/">{headerTag}</Link>)
       }
-      const author = data.cosmicjsSettings.metadata
       const logout = isLoggedIn() ? (<Logout />) : (<span/>)
       return (
         <div>
@@ -74,7 +68,7 @@ export default ({ children, location }) => (
             }}
           >
             {children}
-            <Footer author={author} />
+            <Footer/>
             {logout}
           </div>
           <link href="https://fonts.googleapis.com/css?family=Athiti|Chonburi|Kanit|Maitree|Prompt|Sriracha|Taviraj|Trirong|Josefin+Sans" rel="stylesheet" />
