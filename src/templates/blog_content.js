@@ -11,7 +11,8 @@ export default ({ post, youtubeUrl, height, width, siteTitle, homePageHero, prev
       style={{
         marginTop: rhythm(0.1),
         textAlign: `center`,
-
+        fontFamily: `Kanit`,
+				color: `#0B2238`,
       }}
     >
       {post.title}

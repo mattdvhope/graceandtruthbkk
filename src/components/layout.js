@@ -70,6 +70,7 @@ export default ({ children, location }) => (
               padding: `0 ${rhythm(3 / 4)} ${rhythm(1.5)} ${rhythm(3 / 4)}`,
               minHeight: 'calc(100vh - 42px)',
               fontFamily: `Athiti`,
+              color: `#095793`,
             }}
           >
             {children}

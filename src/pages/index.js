@@ -47,7 +47,7 @@ class BlogIndex extends React.Component {
 
   loggedInLink(title, slug) {
     return (
-      <Link style={{ boxShadow: `none`, fontFamily: `Kanit` }} to={`posts/${slug}`}>
+      <Link style={{ boxShadow: `none`, fontFamily: `Kanit`, color: `#0B2238` }} to={`posts/${slug}`}>
         {title}
       </Link>
     )
