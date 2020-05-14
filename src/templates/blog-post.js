@@ -125,13 +125,8 @@ class BlogPostTemplate extends React.Component {
       this.props,
       'data.cosmicjsSettings.metadata.site_title'
     )
-    const author = get(this, 'props.data.cosmicjsSettings.metadata')
-
     const location = get(this, 'props.location')
     const { previous, next } = this.props.pageContext
-
-    // console.log(this.heightOfVideo())
-
     const blog_post_page = (
       <Layout location={location}>
         <BlogContent
@@ -139,7 +134,6 @@ class BlogPostTemplate extends React.Component {
           youtubeUrl={youtubeUrl}
           height={this.heightOfVideo()}
           width={(this.heightOfVideo() * 16) / 9}
-          author={author}
           siteTitle={siteTitle}
           previous={previous}
           next={next}
@@ -148,12 +142,10 @@ class BlogPostTemplate extends React.Component {
     ) // blog_post_page
 
     if (!this.state.window) {
-      console.log("not yet rendering blog page!!!!");
       return (<span></span>)
     } 
     else {
       if (isLoggedIn()) {
-        console.log("isLoggedIn()!!!!");
         return blog_post_page;
       } else {
         navigate(`/`)

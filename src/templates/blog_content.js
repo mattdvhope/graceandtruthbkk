@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 import HelmetLocale from '../components/HelmetLocale'
 import { rhythm } from '../utils/typography'
 
-export default ({ post, youtubeUrl, height, width, siteTitle, homePageHero, previous, next }) => (
+export default ({ post, youtubeUrl, height, width, siteTitle, previous, next }) => (
 	<>
     <HelmetLocale title={`${post.title} | ${siteTitle}`} />
     <h3
