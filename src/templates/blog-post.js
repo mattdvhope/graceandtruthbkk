@@ -34,6 +34,7 @@ class BlogPostTemplate extends React.Component {
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: params
       })
+      // 'json' contains the various tokes provided by 'api.line.me/oauth2...'
       const json = await response.json();
 
       // 2. getting user info with id_token
