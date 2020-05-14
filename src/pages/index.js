@@ -4,7 +4,6 @@ import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 
-import Infor1 from '../components/Infor1'
 import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
 import { isLoggedIn } from "../utils/auth"
