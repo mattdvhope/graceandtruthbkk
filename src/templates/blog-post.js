@@ -173,11 +173,6 @@ export const pageQuery = graphql`
     cosmicjsSettings(slug: { eq: "general" }) {
       metadata {
         site_title
-        author_name
-        author_bio
-        author_avatar {
-          imgix_url
-        }
       }
     }
   }
