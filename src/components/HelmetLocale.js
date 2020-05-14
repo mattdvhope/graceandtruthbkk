@@ -34,7 +34,7 @@ export default ({ title }) => (
     {/* End Facebook Pixel Code */}
 
     {/* ManyChat -->  */} 
-    <script src="//widget.manychat.com/2006781526066733.js" async="async"></script>
+{/* <script src="//widget.manychat.com/2006781526066733.js" async="async"></script>  */}
 
 
   </Helmet>
