@@ -2,11 +2,8 @@ import React from 'react'
 import HelmetLocale from './HelmetLocale'
 import { Link, navigate } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
-import { isLoggedIn } from "../utils/auth"
 import { rhythm, scale } from '../utils/typography'
-
 import LayoutHeader from './LayoutHeader'
-import Logout from "./Logout"
 import Footer from "./Footer"
 
 // Import typefaces
@@ -51,7 +48,6 @@ export default ({ children, location }) => (
       } else {
         header = (<Link to="/">{headerTag}</Link>)
       }
-      const logout = isLoggedIn() ? (<Logout />) : (<span/>)
       return (
         <div>
           <HelmetLocale title={`${siteTitle}`} />
@@ -61,7 +57,7 @@ export default ({ children, location }) => (
               marginLeft: 'auto',
               marginRight: 'auto',
               maxWidth: rhythm(24),
-              padding: `0 ${rhythm(3 / 4)} ${rhythm(1.5)} ${rhythm(3 / 4)}`,
+              padding: `0 ${rhythm(1.1)} ${rhythm(1.5)} ${rhythm(0.9)}`,
               minHeight: 'calc(100vh - 42px)',
               fontFamily: `Athiti`,
               color: `#095793`,
@@ -69,7 +65,6 @@ export default ({ children, location }) => (
           >
             {children}
             <Footer/>
-            {logout}
           </div>
           <link href="https://fonts.googleapis.com/css?family=Athiti|Chonburi|Kanit|Maitree|Prompt|Sriracha|Taviraj|Trirong|Josefin+Sans" rel="stylesheet" />
         </div>

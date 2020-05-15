@@ -4,8 +4,8 @@ import { logout } from "../utils/auth"
 
 const Logout = () => (
 
-	<h3 style={{ textAlign: 'center', marginTop: `15px`, fontFamily: `Kanit` }}>
 		<a
+      style={{ textDecoration: `none` }}
 	    href="/"
 	    onClick={event => {
 	      event.preventDefault()
@@ -14,7 +14,6 @@ const Logout = () => (
 	  >
 	    ออกจากระบบ
 	  </a>
-	</h3>
 
 )
 
