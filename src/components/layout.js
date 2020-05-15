@@ -3,7 +3,8 @@ import HelmetLocale from './HelmetLocale'
 import { Link, navigate } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
 import { rhythm, scale } from '../utils/typography'
-import LayoutHeader from './LayoutHeader'
+import HomeHeader from './HomeHeader'
+import PostHeader from './PostHeader'
 import Footer from "./Footer"
 
 // Import typefaces
@@ -27,6 +28,15 @@ export default ({ children, location }) => (
                 }
               }
             }
+            homepage_hero_2 {
+              local {
+                childImageSharp {
+                  fluid(quality: 90, maxWidth: 1920) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -35,6 +45,8 @@ export default ({ children, location }) => (
       const siteTitle = data.cosmicjsSettings.metadata.site_heading
       const homePageHero =
         data.cosmicjsSettings.metadata.homepage_hero.local.childImageSharp.fluid
+      const homePageHero2 =
+        data.cosmicjsSettings.metadata.homepage_hero_2.local.childImageSharp.fluid
       let header;
       let rootPath = `/`
       let postsPath = `/posts`
@@ -42,11 +54,10 @@ export default ({ children, location }) => (
         rootPath = __PATH_PREFIX__ + `/`
         postsPath = __PATH_PREFIX__ + `/posts`
       }
-      const headerTag = (<LayoutHeader homePageHero={homePageHero} />)
       if (location.pathname === rootPath || location.pathname === postsPath) {
-        header = headerTag
+        header = (<HomeHeader homePageHero={homePageHero} />)
       } else {
-        header = (<Link to="/">{headerTag}</Link>)
+        header = (<Link to="/"><PostHeader PostHero={homePageHero2} /></Link>)
       }
       return (
         <div>
