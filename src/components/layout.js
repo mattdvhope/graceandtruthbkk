@@ -28,7 +28,7 @@ export default ({ children, location }) => (
                 }
               }
             }
-            homepage_hero_2 {
+            post_hero {
               local {
                 childImageSharp {
                   fluid(quality: 90, maxWidth: 1920) {
@@ -45,8 +45,8 @@ export default ({ children, location }) => (
       const siteTitle = data.cosmicjsSettings.metadata.site_heading
       const homePageHero =
         data.cosmicjsSettings.metadata.homepage_hero.local.childImageSharp.fluid
-      const homePageHero2 =
-        data.cosmicjsSettings.metadata.homepage_hero_2.local.childImageSharp.fluid
+      const postHero =
+        data.cosmicjsSettings.metadata.post_hero.local.childImageSharp.fluid
       let header;
       let rootPath = `/`
       let postsPath = `/posts`
@@ -57,7 +57,7 @@ export default ({ children, location }) => (
       if (location.pathname === rootPath || location.pathname === postsPath) {
         header = (<HomeHeader homePageHero={homePageHero} />)
       } else {
-        header = (<Link to="/"><PostHeader PostHero={homePageHero2} /></Link>)
+        header = (<Link to="/"><PostHeader PostHero={postHero} /></Link>)
       }
       return (
         <div>
