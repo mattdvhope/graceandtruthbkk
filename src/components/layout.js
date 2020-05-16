@@ -22,7 +22,7 @@ export default ({ children, location }) => (
             homepage_hero {
               local {
                 childImageSharp {
-                  fluid(quality: 90, maxWidth: 1920) {
+                  fluid(quality: 45, maxWidth: 1920) {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
@@ -31,7 +31,7 @@ export default ({ children, location }) => (
             homepage_hero_2 {
               local {
                 childImageSharp {
-                  fluid(quality: 90, maxWidth: 1920) {
+                  fluid(quality: 45, maxWidth: 1920) {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
