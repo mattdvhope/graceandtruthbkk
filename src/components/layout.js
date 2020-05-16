@@ -31,7 +31,7 @@ export default ({ children, location }) => (
             homepage_hero_2 {
               local {
                 childImageSharp {
-                  fluid(quality: 100, maxWidth: 1920) {
+                  fluid(quality: 90, maxWidth: 1920) {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
