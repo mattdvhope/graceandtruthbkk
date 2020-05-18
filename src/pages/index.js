@@ -9,6 +9,14 @@ import { rhythm } from '../utils/typography'
 import { isLoggedIn } from "../utils/auth"
 
 class BlogIndex extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      window: undefined,
+    };
+    this.thumbNailImage = this.thumbNailImage.bind(this);
+  }
+
   handleClick(e, slug) {
     e.preventDefault();
     window.localStorage.setItem("Node Slug", slug);
@@ -53,6 +61,22 @@ class BlogIndex extends React.Component {
     )
   }
 
+  thumbNailImage(src) {
+    return (
+      <img
+        src={src} alt="image" height="65px" width="65px"
+        style={{
+          float: `left`,
+          borderRadius: `50%`,
+                  borderStyle: `inset`,
+          marginTop: rhythm(1 / 2),
+          marginBottom: rhythm(-0.3),
+          marginRight: rhythm(1 / 3),
+        }}
+      />
+    )
+  }
+
   render() {
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
     const location = get(this, 'props.location')
@@ -63,6 +87,7 @@ class BlogIndex extends React.Component {
           const title = get(node, 'title') || node.slug
           return (
             <div key={node.slug}>
+              {this.thumbNailImage(node.metadata.thumb_nail_youtube.imgix_url)}
               <h3
                 style={{
                   marginBottom: rhythm(1 / 4),
@@ -88,6 +113,9 @@ export const pageQuery = graphql`
         node {
           metadata {
             description
+            thumb_nail_youtube {
+              imgix_url
+            }
           }
           slug
           title
