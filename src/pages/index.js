@@ -34,7 +34,7 @@ class BlogIndex extends React.Component {
       <a
         href={this.lineLink(slug)}
         onClick={e => this.handleClick(e, slug)}
-        style={{ boxShadow: `none`, fontFamily: `Kanit` }}
+        style={{ boxShadow: `none`, fontFamily: `Kanit`, color: `#0B2238` }}
       >
         {title}
       </a>
