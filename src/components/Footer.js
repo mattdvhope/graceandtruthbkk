@@ -38,7 +38,15 @@ export default () => (
             settings={settings}
           />
           <br/>
-          <div style={{ display: `block`, marginLeft: `auto`, marginRight: `auto`, fontFamily: `Kanit`, fontSize: `170%`, width: `318px`, width: `156px` }}>
+          <div style={{
+                display: `block`,
+                marginLeft: `auto`,
+                marginRight: `auto`,
+                fontFamily: `Kanit`,
+                fontSize: `170%`,
+                width: `318px`,
+                width: `156px`
+               }}>
             {logout}
           </div>
         </div>
