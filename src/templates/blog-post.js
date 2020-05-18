@@ -44,29 +44,18 @@ class BlogPostTemplate extends React.Component {
         body: `id_token=${json.id_token}&client_id=1654145148`
       });
       const person = await personal_data.json()
-      handleLogin(person)
 
-      // 3. personal data from LINE login
-      this.setState({ window: window, person: person, id_token: json.id_token });
+      // 3. validate ID token
+      let base64Url = json.id_token.split('.')[1]; // json.id_token you get
+      let base64 = base64Url.replace('-', '+').replace('_', '/');
+      let decodedData = JSON.parse(Buffer.from(base64, 'base64').toString('binary'));
 
-      // sessionStorage.setItem("json", JSON.stringify(json))
-      // // 4a. validate ID token
-      // let base64Url = json.id_token.split('.')[1]; // json.id_token you get
-      // let base64 = base64Url.replace('-', '+').replace('_', '/');
-      // let decodedData = JSON.parse(Buffer.from(base64, 'base64').toString('binary'));
-      // console.log("decodedData: ", decodedData)
+      // 4. If person validated, then login & go to blog page
+      if (JSON.stringify(person) === JSON.stringify(decodedData)) {
+        handleLogin(person)
+        this.setState({ window: window, person: person, id_token: json.id_token });
+      }
 
-      // // 4b. validate ID token
-      // console.log("decodedData: ", parseJwt(json.id_token))
-      // function parseJwt (token) {
-      //   var base64Url = token.split('.')[1];
-      //   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      //   var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      //       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      //   }).join(''));
-
-      //   return JSON.parse(jsonPayload);
-      // };
     } else {
       this.setState({ window: window, person: getUser() })
     }
