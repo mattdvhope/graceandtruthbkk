@@ -33,17 +33,18 @@ class BlogIndex extends React.Component {
     return result;
   }
 
-  Linkage(title, slug) {
-    return isLoggedIn() ? this.loggedInLink(title, slug) : this.loggedOutLink(title, slug)
+  Linkage(title, slug, src) {
+    return isLoggedIn() ? this.loggedInLink(title, slug, src) : this.loggedOutLink(title, slug, src)
   }
 
-  loggedOutLink(title, slug) {
+  loggedOutLink(title, slug, src) {
     return (
       <a
         href={this.lineLink(slug)}
         onClick={e => this.handleClick(e, slug)}
         style={{ boxShadow: `none`, fontFamily: `Kanit`, color: `#0B2238` }}
       >
+        {this.thumbNailImage(src)}
         {title}
       </a>
     )
@@ -53,28 +54,27 @@ class BlogIndex extends React.Component {
     return `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654145148&redirect_uri=${process.env.GATSBY_API_URL}${slug}&state=${this.makeState(10)}&scope=profile%20openid&max_age=360000&ui_locales=th&bot_prompt=aggressive`
   }
 
-  loggedInLink(title, slug) {
+  loggedInLink(title, slug, src) {
     return (
       <Link style={{ boxShadow: `none`, fontFamily: `Kanit`, color: `#0B2238` }} to={`posts/${slug}`}>
+        {this.thumbNailImage(src)}
         {title}
       </Link>
     )
   }
 
   thumbNailImage(src) {
-    return (
-      <img
-        src={src} alt="image" height="65px" width="65px"
-        style={{
-          float: `left`,
-          borderRadius: `50%`,
-                  borderStyle: `inset`,
-          marginTop: rhythm(1 / 2),
-          marginBottom: rhythm(-0.3),
-          marginRight: rhythm(1 / 3),
-        }}
-      />
-    )
+    return <img
+      src={src} alt="image" height="65px" width="65px"
+      style={{
+        float: `left`,
+        borderRadius: `50%`,
+        borderStyle: `inset`,
+        marginTop: rhythm(1 / 2),
+        marginBottom: rhythm(-0.3),
+        marginRight: rhythm(1 / 3),
+      }}
+    />
   }
 
   render() {
@@ -85,15 +85,15 @@ class BlogIndex extends React.Component {
       <Layout location={location}>
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
+          const src = node.metadata.thumb_nail_youtube.imgix_url;
           return (
             <div key={node.slug}>
-              {this.thumbNailImage(node.metadata.thumb_nail_youtube.imgix_url)}
               <h3
                 style={{
                   marginBottom: rhythm(1 / 4),
                 }}
               >
-                {this.Linkage(title, node.slug)}
+                {this.Linkage(title, node.slug, src)}
               </h3>
               <p dangerouslySetInnerHTML={{ __html: node.metadata.description }}/>
             </div>
