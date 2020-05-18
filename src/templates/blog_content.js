@@ -1,5 +1,4 @@
 import React from "react"
-import BackgroundImage from 'gatsby-background-image'
 import { Link } from 'gatsby'
 import HelmetLocale from '../components/HelmetLocale'
 import { rhythm } from '../utils/typography'
@@ -18,7 +17,7 @@ export default ({ post, youtubeUrl, height, width, siteTitle, previous, next }) 
       {post.title}
     </h3>
     <div>
-      <iframe
+      <iframe // Youtube video 
         style={{
 				  marginLeft: `auto`,
 				  marginRight: `auto`,
