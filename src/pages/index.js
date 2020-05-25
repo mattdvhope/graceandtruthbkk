@@ -80,7 +80,7 @@ class BlogIndex extends React.Component {
   lineMsg(intro) {
     const intro_to_LINE_links = intro;
     return isLoggedIn() ? null : (<div style={{
-      width: `88%`,
+      width: `92%`,
       marginTop: `-1.5vw`,
       marginLeft: `auto`,
       marginRight: `auto`,
