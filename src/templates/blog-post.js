@@ -63,7 +63,7 @@ class BlogPostTemplate extends React.Component {
 
   youtubeEmbeddable(youtubeUrl) {
     const video_id = this.youtubeId(youtubeUrl);
-    return `https://www.youtube.com/embed/${video_id}`
+    return `https://www.youtube.com/embed/${video_id}?rel=0`
   }
 
   youtubeId(youtubeUrl) {
