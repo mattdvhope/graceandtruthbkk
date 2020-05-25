@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from 'gatsby'
 import HelmetLocale from '../components/HelmetLocale'
 import { rhythm } from '../utils/typography'
+import { linkVisit } from "../utils/auth"
 
 export default ({ post, youtubeUrl, height, width, siteTitle, previous, next }) => (
 	<>
@@ -51,7 +52,7 @@ export default ({ post, youtubeUrl, height, width, siteTitle, previous, next }) 
     >
       {previous && (
         <li>
-          <Link to={`posts/${previous.slug}`} rel="prev">
+          <Link onClick={e => linkVisit()} to={`posts/${previous.slug}`} rel="prev">
             ← {previous.title}
           </Link>
         </li>
@@ -59,7 +60,7 @@ export default ({ post, youtubeUrl, height, width, siteTitle, previous, next }) 
 
       {next && (
         <li>
-          <Link to={`posts/${next.slug}`} rel="next">
+          <Link onClick={e => linkVisit()} to={`posts/${next.slug}`} rel="next">
             {next.title} →
           </Link>
         </li>
