@@ -65,36 +65,67 @@ class BlogIndex extends React.Component {
 
   thumbNailImage(src) {
     return <img
-      src={src} alt="image" height="65px" width="65px"
+      src={src} alt="thumbnail" height="65px" width="65px"
       style={{
         float: `left`,
         borderRadius: `50%`,
         borderStyle: `inset`,
         marginTop: rhythm(1 / 2),
-        marginBottom: rhythm(-0.3),
+        marginBottom: rhythm(-0.1),
         marginRight: rhythm(1 / 3),
       }}
     />
   }
 
+  lineMsg(intro) {
+    const intro_to_LINE_links = intro;
+    return isLoggedIn() ? null : (<div style={{
+      width: `88%`,
+      marginTop: `-1.5vw`,
+      marginLeft: `auto`,
+      marginRight: `auto`,
+      marginBottom: `-30px`,
+      fontSize: `130%`,
+    }}>
+      {intro_to_LINE_links}
+    </div>)
+  }
+
+  lineImage() {
+    return isLoggedIn() ? null : (<img
+      src="/LINE_APP.png" alt="LINE" width="20px" height="20px"
+      style={{
+        float: `left`,
+        marginTop: `9px`,
+        marginRight: `6px`,
+        marginBottom: rhythm(-0.1),
+      }}
+    />)
+  }
+
   render() {
+    const intro = get(this, 'props.data.cosmicjsSettings.metadata.site_description')
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
     const location = get(this, 'props.location')
 
     return (
       <Layout location={location}>
+        {this.lineMsg(intro)}
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           const src = node.metadata.thumb_nail_youtube.imgix_url;
           return (
             <div key={node.slug}>
-              <h3
+              <div
                 style={{
-                  marginBottom: rhythm(1 / 4),
+                  marginTop: rhythm(1.5),
+                  marginBottom: rhythm(-0.1),
+                  fontSize: `130%`,
                 }}
               >
                 {this.Linkage(title, node.slug, src)}
-              </h3>
+                {this.lineImage()}
+              </div>
               <p dangerouslySetInnerHTML={{ __html: node.metadata.description }}/>
             </div>
           )
@@ -121,6 +152,11 @@ export const pageQuery = graphql`
           title
           created(formatString: "DD MMMM, YYYY")
         }
+      }
+    }
+    cosmicjsSettings(slug: { eq: "general" }) {
+      metadata {
+        site_description
       }
     }
   }
