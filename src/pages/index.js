@@ -67,7 +67,7 @@ class BlogIndex extends React.Component {
     const user_data = JSON.parse(sessionStorage.getItem("user_data"));
     let visits = user_data.user.visits
     addVisit(user_data.user.name, user_data.user.picture)
-    console.log(visits)
+    console.log(visits + 1)
   }
 
   thumbNailImage(src) {
