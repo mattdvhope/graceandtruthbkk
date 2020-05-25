@@ -23,6 +23,18 @@ module.exports = {
       }
     },
     {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // This type will contain remote schema Query type
+        typeName: "QueryType",
+        // This is the field under which it's accessible
+        fieldName: "rails_api",
+        // URL to query from
+        // url: "https://graphql-rails-pg1.herokuapp.com/graphql",
+        url: "http://localhost:3000/graphql",
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         //trackingId: `ADD YOUR TRACKING ID HERE`,

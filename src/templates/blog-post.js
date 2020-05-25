@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, navigate } from 'gatsby'
 import get from 'lodash/get'
 import { graphql } from 'gatsby'
-import { handleLogin, isLoggedIn, getUser } from "../utils/auth"
+import { handleLogin, isLoggedIn, getUser, addVisit } from "../utils/auth"
 
 import HelmetLocale from '../components/HelmetLocale'
 import Layout from '../components/layout'
@@ -45,6 +45,9 @@ class BlogPostTemplate extends React.Component {
       });
       const person = await personal_data.json()
 
+      // 2a. Save new user in Rails
+      addVisit(person.name, person.picture)
+      
       // 3. validate ID token
       let base64Url = json.id_token.split('.')[1]; // json.id_token you get
       let base64 = base64Url.replace('-', '+').replace('_', '/');

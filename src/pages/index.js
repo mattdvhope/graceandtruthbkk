@@ -6,7 +6,7 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
-import { isLoggedIn } from "../utils/auth"
+import { isLoggedIn, addVisit } from "../utils/auth"
 
 class BlogIndex extends React.Component {
   constructor() {
@@ -56,11 +56,18 @@ class BlogIndex extends React.Component {
 
   loggedInLink(title, slug, src) {
     return (
-      <Link style={{ boxShadow: `none`, fontFamily: `Kanit`, color: `#0B2238` }} to={`posts/${slug}`}>
+      <Link style={{ boxShadow: `none`, fontFamily: `Kanit`, color: `#0B2238` }} onClick={e => this.linkVisit()} to={`posts/${slug}`}>
         {this.thumbNailImage(src)}
         {title}
       </Link>
     )
+  }
+
+  linkVisit() {
+    const user_data = JSON.parse(sessionStorage.getItem("user_data"));
+    let visits = user_data.user.visits
+    addVisit(user_data.user.name, user_data.user.picture)
+    console.log(visits)
   }
 
   thumbNailImage(src) {

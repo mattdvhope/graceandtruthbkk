@@ -25,5 +25,16 @@ export const logout = callback => {
   callback()
 }
 
+export async function addVisit(name, picture) {
+  const saved_person = await fetch(`http://localhost:3000/users`, {
+    method: 'POST',
+    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    body: `name=${name}&picture=${picture}`
+  });
+  const saved_person_data = await saved_person.json()
+  sessionStorage.setItem("user_data", JSON.stringify(saved_person_data))
+}
+
+
 // see 'https://www.gatsbyjs.org/docs/authentication-tutorial/'
 // to learn how to set up "LOGIN" in Gatsby 2
