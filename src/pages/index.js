@@ -19,9 +19,8 @@ class BlogIndex extends React.Component {
   }
 
   topIntroMsg(description) {
-    const descr_under_LINE_login_links = description;
-    return isLoggedIn() ? <span/> :
-      (<div
+    return (
+      <div
           style={{
             width: `92%`,
             marginLeft: `auto`,
@@ -30,7 +29,7 @@ class BlogIndex extends React.Component {
           }}
         >
         <hr style={{ marginBottom: `0%` }}/>
-        <span>{descr_under_LINE_login_links}</span>
+        {description}
         <hr style={{ marginBottom: `0%` }}/>
       </div>)
   }
@@ -92,10 +91,11 @@ class BlogIndex extends React.Component {
     const description = get(this, 'props.data.cosmicjsSettings.metadata.site_description')
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
     const location = get(this, 'props.location')
+    const introMsg = isLoggedIn() ? <span/> : this.topIntroMsg(description)
 
     return (
       <Layout location={location}>
-        {this.topIntroMsg(description)}
+        {introMsg}
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           const src = node.metadata.thumb_nail_youtube.imgix_url;
