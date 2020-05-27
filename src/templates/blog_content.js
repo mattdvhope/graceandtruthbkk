@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from 'gatsby'
 import HelmetLocale from '../components/HelmetLocale'
 import { rhythm } from '../utils/typography'
-import { linkVisit } from "../utils/auth"
+import { linkVisit } from "../utils/visit_recorder"
 
 export default ({ post, youtubeUrl, height, width, siteTitle, previous, next }) => (
 	<>
