@@ -74,7 +74,7 @@ class BlogIndex extends React.Component {
 
   render() {
     const description = isLoggedIn() ? "เราหวังว่าคุณจะชอบวิดีโอเหล่านี้ค่ะ" : get(this, 'props.data.cosmicjsSettings.metadata.site_description')
-    const timeIntroWidth = isLoggedIn() ? "13em" : "92%"
+    const timeIntroWidth = isLoggedIn() ? "21ch" : "92%"
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
     const location = get(this, 'props.location')
 
