@@ -10,9 +10,9 @@ const TopIntroMsg = ({ description, width }) => (
         fontSize: `130%`,
       }}
     >
-    <hr style={{ marginBottom: `0%`, width: `13em` }}/>
-    {description}
-    <hr style={{ marginBottom: `0%`, width: `13em` }}/>
+    <hr style={{ marginBottom: `0%` }}/>
+    <div style={{ marginLeft: `auto`, marginRight: `auto` }}>{description}</div>
+    <hr style={{ marginBottom: `0%` }}/>
   </div>
 
 )
