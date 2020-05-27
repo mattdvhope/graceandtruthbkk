@@ -1,10 +1,10 @@
 import React from "react"
 
-const TopIntroMsg = ({ description }) => (
+const TopIntroMsg = ({ description, width }) => (
 
 	<div
       style={{
-        width: `92%`,
+        width: `${width}`,
         marginLeft: `auto`,
         marginRight: `auto`,
         fontSize: `130%`,

@@ -73,14 +73,14 @@ class BlogIndex extends React.Component {
   }
 
   render() {
-    const description = get(this, 'props.data.cosmicjsSettings.metadata.site_description')
+    const description = isLoggedIn() ? "เราหวังว่าคุณจะชอบวิดีโอเหล่านี้ค่ะ" : get(this, 'props.data.cosmicjsSettings.metadata.site_description')
+    const timeIntroWidth = isLoggedIn() ? "270px" : "92%"
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
     const location = get(this, 'props.location')
-    // const introMsg = isLoggedIn() ? <span/> : <TopIntroMsg description={description}/>
 
     return (
       <Layout location={location}>
-        <TopIntroMsg description={description}/>
+        <TopIntroMsg description={description} width={timeIntroWidth}/>
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           const src = node.metadata.thumb_nail_youtube.imgix_url;
