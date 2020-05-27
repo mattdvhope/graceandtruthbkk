@@ -4,6 +4,7 @@ import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
+import TopIntroMsg from '../components/TopIntroMsg'
 import { rhythm } from '../utils/typography'
 import { isLoggedIn } from "../utils/auth"
 import { makeState, lineLoginURL, handleLineLoginClick } from "../utils/line_login"
@@ -16,22 +17,6 @@ class BlogIndex extends React.Component {
       window: undefined,
     };
     this.thumbNailImage = this.thumbNailImage.bind(this);
-  }
-
-  topIntroMsg(description) {
-    return (
-      <div
-          style={{
-            width: `92%`,
-            marginLeft: `auto`,
-            marginRight: `auto`,
-            fontSize: `130%`,
-          }}
-        >
-        <hr style={{ marginBottom: `0%` }}/>
-        {description}
-        <hr style={{ marginBottom: `0%` }}/>
-      </div>)
   }
 
   thumbNailImage(src) {
@@ -91,11 +76,11 @@ class BlogIndex extends React.Component {
     const description = get(this, 'props.data.cosmicjsSettings.metadata.site_description')
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
     const location = get(this, 'props.location')
-    const introMsg = isLoggedIn() ? <span/> : this.topIntroMsg(description)
+    // const introMsg = isLoggedIn() ? <span/> : <TopIntroMsg description={description}/>
 
     return (
       <Layout location={location}>
-        {introMsg}
+        <TopIntroMsg description={description}/>
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           const src = node.metadata.thumb_nail_youtube.imgix_url;
