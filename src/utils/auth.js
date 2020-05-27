@@ -1,4 +1,4 @@
-// This provides functions for logging in and logging out..
+// This provides functions for logging in and logging out.
 
 export const isBrowser = () => typeof window !== "undefined"
 
