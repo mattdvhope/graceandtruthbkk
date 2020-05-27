@@ -3,7 +3,6 @@ import { Link } from 'gatsby'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
-
 import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
 import { isLoggedIn } from "../utils/auth"
@@ -19,42 +18,21 @@ class BlogIndex extends React.Component {
     this.thumbNailImage = this.thumbNailImage.bind(this);
   }
 
-  lineMsg(intro) {
-    const intro_to_LINE_links = intro;
+  topIntroMsg(description) {
+    const descr_under_LINE_login_links = description;
     return isLoggedIn() ? null :
-      (<div style={{
-        width: `92%`,
-        marginTop: `-1.5vw`,
-        marginLeft: `auto`,
-        marginRight: `auto`,
-        fontSize: `130%`,
-      }}>{intro_to_LINE_links}</div>)
-  }
-
-  Linkage(title, slug, src) {
-    return isLoggedIn() ? this.loggedInLink(title, slug, src) : this.loggedOutLink(title, slug, src)
-  }
-
-  loggedOutLink(title, slug, src) {
-    return (
-      <a
-        href={lineLoginURL(slug)}
-        onClick={e => handleLineLoginClick(e, slug)}
-        style={{ boxShadow: `none`, fontFamily: `Kanit`, color: `#0B2238` }}
-      >
-        {this.thumbNailImage(src)}
-        {title}
-      </a>
-    )
-  }
-
-  loggedInLink(title, slug, src) {
-    return (
-      <Link style={{ boxShadow: `none`, fontFamily: `Kanit`, color: `#0B2238` }} onClick={e => linkVisit()} to={`posts/${slug}`}>
-        {this.thumbNailImage(src)}
-        {title}
-      </Link>
-    )
+      (<div
+          style={{
+            width: `92%`,
+            marginLeft: `auto`,
+            marginRight: `auto`,
+            fontSize: `130%`,
+          }}
+        >
+          <hr style={{ marginBottom: `0%` }}/>
+          <span>{descr_under_LINE_login_links}</span>
+          <hr style={{ marginBottom: `0%` }}/>
+        </div>)
   }
 
   thumbNailImage(src) {
@@ -71,7 +49,11 @@ class BlogIndex extends React.Component {
     />
   }
 
-  lineImage() {
+  Linkage(title, slug, src) {
+    return isLoggedIn() ? this.loggedInLink(title, slug, src) : this.loggedOutLink(title, slug, src)
+  }
+
+  lineLogo() {
     return isLoggedIn() ? null : (<img
       src="/LINE_APP.png" alt="LINE" width="20px" height="20px"
       style={{
@@ -82,14 +64,38 @@ class BlogIndex extends React.Component {
       }}/>)
   }
 
+  loggedOutLink(title, slug, src) {
+    return (
+      <a
+        href={lineLoginURL(slug)}
+        onClick={e => handleLineLoginClick(e, slug)}
+        style={{ boxShadow: `none`, fontFamily: `Kanit`, color: `#0B2238` }}
+      >
+        {this.thumbNailImage(src)}
+        {this.lineLogo()}
+        {title}
+      </a>
+    )
+  }
+
+  loggedInLink(title, slug, src) {
+    return (
+      <Link style={{ boxShadow: `none`, fontFamily: `Kanit`, color: `#0B2238` }} onClick={e => linkVisit()} to={`posts/${slug}`}>
+        {this.thumbNailImage(src)}
+        {this.lineLogo()}
+        {title}
+      </Link>
+    )
+  }
+
   render() {
-    const intro = get(this, 'props.data.cosmicjsSettings.metadata.site_description')
+    const description = get(this, 'props.data.cosmicjsSettings.metadata.site_description')
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
     const location = get(this, 'props.location')
 
     return (
       <Layout location={location}>
-        {this.lineMsg(intro)}
+        {this.topIntroMsg(description)}
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           const src = node.metadata.thumb_nail_youtube.imgix_url;
@@ -103,7 +109,6 @@ class BlogIndex extends React.Component {
                 }}
               >
                 {this.Linkage(title, node.slug, src)}
-                {this.lineImage()}
               </div>
               <p dangerouslySetInnerHTML={{ __html: node.metadata.description }}/>
             </div>
