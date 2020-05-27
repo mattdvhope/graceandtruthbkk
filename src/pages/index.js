@@ -20,7 +20,7 @@ class BlogIndex extends React.Component {
 
   topIntroMsg(description) {
     const descr_under_LINE_login_links = description;
-    return isLoggedIn() ? null :
+    return isLoggedIn() ? <span/> :
       (<div
           style={{
             width: `92%`,
@@ -29,10 +29,10 @@ class BlogIndex extends React.Component {
             fontSize: `130%`,
           }}
         >
-          <hr style={{ marginBottom: `0%` }}/>
-          <span>{descr_under_LINE_login_links}</span>
-          <hr style={{ marginBottom: `0%` }}/>
-        </div>)
+        <hr style={{ marginBottom: `0%` }}/>
+        <span>{descr_under_LINE_login_links}</span>
+        <hr style={{ marginBottom: `0%` }}/>
+      </div>)
   }
 
   thumbNailImage(src) {
@@ -54,7 +54,7 @@ class BlogIndex extends React.Component {
   }
 
   lineLogo() {
-    return isLoggedIn() ? null : (<img
+    return isLoggedIn() ? <span/> : (<img
       src="/LINE_APP.png" alt="LINE" width="20px" height="20px"
       style={{
         float: `left`,
@@ -103,7 +103,7 @@ class BlogIndex extends React.Component {
             <div key={node.slug}>
               <div
                 style={{
-                  marginTop: rhythm(1.5),
+                  marginTop: rhythm(1.2),
                   marginBottom: rhythm(-0.1),
                   fontSize: `130%`,
                 }}
