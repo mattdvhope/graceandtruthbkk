@@ -7,7 +7,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
 import { isLoggedIn } from "../utils/auth"
-import { makeState, lineLoginURL } from "../utils/line_login"
+import { makeState, lineLoginURL, handleLineLoginClick } from "../utils/line_login"
 import { linkVisit } from "../utils/visit_recorder"
 
 class BlogIndex extends React.Component {
@@ -17,12 +17,6 @@ class BlogIndex extends React.Component {
       window: undefined,
     };
     this.thumbNailImage = this.thumbNailImage.bind(this);
-  }
-
-  handleClick(e, slug) {
-    e.preventDefault();
-    window.localStorage.setItem("Node Slug", slug);
-    window.location.replace(lineLoginURL(slug));
   }
 
   lineMsg(intro) {
@@ -45,7 +39,7 @@ class BlogIndex extends React.Component {
     return (
       <a
         href={lineLoginURL(slug)}
-        onClick={e => this.handleClick(e, slug)}
+        onClick={e => handleLineLoginClick(e, slug)}
         style={{ boxShadow: `none`, fontFamily: `Kanit`, color: `#0B2238` }}
       >
         {this.thumbNailImage(src)}
