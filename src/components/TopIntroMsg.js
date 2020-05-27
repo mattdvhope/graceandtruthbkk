@@ -1,7 +1,6 @@
 import React from "react"
 
 const TopIntroMsg = ({ description, width }) => (
-
 	<div
       style={{
         width: `${width}`,
@@ -16,5 +15,4 @@ const TopIntroMsg = ({ description, width }) => (
   </div>
 
 )
-
 export default TopIntroMsg
