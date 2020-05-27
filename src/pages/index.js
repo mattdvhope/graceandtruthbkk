@@ -7,6 +7,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
 import { isLoggedIn } from "../utils/auth"
+import { makeState, lineLoginURL } from "../utils/line_login"
 import { linkVisit } from "../utils/visit_recorder"
 
 class BlogIndex extends React.Component {
@@ -21,17 +22,19 @@ class BlogIndex extends React.Component {
   handleClick(e, slug) {
     e.preventDefault();
     window.localStorage.setItem("Node Slug", slug);
-    window.location.replace(this.lineLink(slug));
+    window.location.replace(lineLoginURL(slug));
   }
 
-  makeState(length) {
-    let result           = '';
-    let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let charactersLength = characters.length;
-    for ( let i = 0; i < length; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
+  lineMsg(intro) {
+    const intro_to_LINE_links = intro;
+    return isLoggedIn() ? null :
+      (<div style={{
+        width: `92%`,
+        marginTop: `-1.5vw`,
+        marginLeft: `auto`,
+        marginRight: `auto`,
+        fontSize: `130%`,
+      }}>{intro_to_LINE_links}</div>)
   }
 
   Linkage(title, slug, src) {
@@ -41,7 +44,7 @@ class BlogIndex extends React.Component {
   loggedOutLink(title, slug, src) {
     return (
       <a
-        href={this.lineLink(slug)}
+        href={lineLoginURL(slug)}
         onClick={e => this.handleClick(e, slug)}
         style={{ boxShadow: `none`, fontFamily: `Kanit`, color: `#0B2238` }}
       >
@@ -49,10 +52,6 @@ class BlogIndex extends React.Component {
         {title}
       </a>
     )
-  }
-
-  lineLink(slug) {
-    return `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654145148&redirect_uri=${process.env.GATSBY_API_URL}${slug}&state=${this.makeState(10)}&scope=profile%20openid&max_age=360000&ui_locales=th&bot_prompt=aggressive`
   }
 
   loggedInLink(title, slug, src) {
@@ -87,18 +86,6 @@ class BlogIndex extends React.Component {
         marginRight: `6px`,
         marginBottom: rhythm(-0.1),
       }}/>)
-  }
-
-  lineMsg(intro) {
-    const intro_to_LINE_links = intro;
-    return isLoggedIn() ? null :
-      (<div style={{
-        width: `92%`,
-        marginTop: `-1.5vw`,
-        marginLeft: `auto`,
-        marginRight: `auto`,
-        fontSize: `130%`,
-      }}>{intro_to_LINE_links}</div>)
   }
 
   render() {
