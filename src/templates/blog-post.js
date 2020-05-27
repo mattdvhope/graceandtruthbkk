@@ -2,7 +2,8 @@ import React from 'react'
 import { Link, navigate } from 'gatsby'
 import get from 'lodash/get'
 import { graphql } from 'gatsby'
-import { handleLogin, isLoggedIn, getUser, addVisit } from "../utils/auth"
+import { handleLogin, isLoggedIn, getUser } from "../utils/auth"
+import { addVisit } from "../utils/visit_recorder"
 
 import HelmetLocale from '../components/HelmetLocale'
 import Layout from '../components/layout'
