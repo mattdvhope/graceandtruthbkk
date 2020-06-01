@@ -5,6 +5,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import { rhythm, scale } from '../utils/typography'
 import HomeHeader from './HomeHeader'
 import PostHeader from './PostHeader'
+import { isLoggedIn } from '../utils/auth'
 import Footer from "./Footer"
 
 // Import typefaces
