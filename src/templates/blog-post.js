@@ -46,9 +46,6 @@ class BlogPostTemplate extends React.Component {
       });
       const person = await personal_data.json()
 
-      // 2a. Save new user in Rails
-      addVisit(person.name, person.picture)
-      
       // 3. validate ID token
       let base64Url = json.id_token.split('.')[1]; // json.id_token you get
       let base64 = base64Url.replace('-', '+').replace('_', '/');
@@ -57,6 +54,7 @@ class BlogPostTemplate extends React.Component {
       // 4. If person validated, then login & go to blog page
       if (JSON.stringify(person) === JSON.stringify(decodedData)) {
         handleLogin(person)
+        addVisit(person.name, person.picture) // Save new user in Rails
         this.setState({ window: window, person: person, id_token: json.id_token });
       }
 
